@@ -17,9 +17,9 @@ namespace Wing.ViewModels
 
         public ObservableCollection<int> Connections { get; } = new();
 
-        public GraphNodeViewModel(int id, string content, Point position)
+        public NodeViewModel(int id, string content, Point position)
         {
-            ID = id;
+            Id = id;
             Content = content;
             Position = position;
         }
