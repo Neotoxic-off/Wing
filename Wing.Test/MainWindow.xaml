@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wing.Test"
         xmlns:graph="clr-namespace:Wing.Views;assembly=Wing"
+        xmlns:vm="clr-namespace:Wing.Test.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
     <Grid>
-        <graph:GraphControl/>
+        <graph:GraphControl DataContext="{Binding GraphViewModel}"/>
     </Grid>
 </Window>

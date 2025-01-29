@@ -7,23 +7,39 @@
              xmlns:local="clr-namespace:Wing.Views"
              xmlns:vm="clr-namespace:Wing.ViewModels">
 
-    <UserControl.Resources>
-        <!-- Node DataTemplate -->
-        <DataTemplate DataType="{x:Type vm:NodeViewModel}">
-            <Border BorderBrush="Black" BorderThickness="1" Background="LightGray"
-                    Width="100" Height="50" CornerRadius="10">
-                <TextBlock Text="{Binding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            </Border>
-        </DataTemplate>
-    </UserControl.Resources>
+    <UserControl.DataContext>
+        <vm:GraphViewModel />
+    </UserControl.DataContext>
 
-    <Canvas x:Name="Canvas" Background="White">
+    <Canvas Background="White">
+        <!-- Draw Edges (Lines) -->
+        <ItemsControl ItemsSource="{Binding Edges}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type vm:EdgeViewModel}">
+                    <Line X1="{Binding StartNode.Position.X}" Y1="{Binding StartNode.Position.Y}"
+                          X2="{Binding EndNode.Position.X}" Y2="{Binding EndNode.Position.Y}"
+                          Stroke="Black" StrokeThickness="2"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!-- Draw Nodes -->
         <ItemsControl ItemsSource="{Binding Nodes}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <Canvas />
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
+
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type vm:NodeViewModel}">
+                    <Border BorderBrush="Black" BorderThickness="1" Background="LightGray"
+                            Width="100" Height="50" CornerRadius="10">
+                        <TextBlock Text="{Binding Content}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+
             <ItemsControl.ItemContainerStyle>
                 <Style TargetType="ContentPresenter">
                     <Setter Property="Canvas.Left" Value="{Binding Position.X}" />

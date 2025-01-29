@@ -20,10 +20,6 @@ namespace Wing.Test
         public MainWindow()
         {
             InitializeComponent();
-
-            GraphControl graphControl = new GraphControl();
-            graphControl.ViewModel.AddNode("Node A", new Point(100, 100));
-            graphControl.ViewModel.AddNode("Node B", new Point(300, 200));
         }
     }
 }
